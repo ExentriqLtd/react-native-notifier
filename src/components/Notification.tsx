@@ -79,6 +79,10 @@ export interface NotificationComponentProps {
    * @default null */
   titleStyle?: StyleProp<TextStyle>;
 
+  /** The style to use for rendering subTitle
+ * @default null */
+  subTitleStyle?: StyleProp<TextStyle>;
+
   /** The style to use for rendering description
    * @default null */
   descriptionStyle?: StyleProp<TextStyle>;
@@ -95,12 +99,15 @@ export interface NotificationComponentProps {
 
 interface NotificationComponentAllProps extends NotificationComponentProps {
   title?: string;
+  subTitle?: string;
   description?: string;
 }
 
 const NotificationComponent: React.FunctionComponent<NotificationComponentAllProps> = ({
   title,
+  subTitle,
   titleStyle,
+  subTitleStyle,
   description,
   descriptionStyle,
   imageSource,
@@ -119,6 +126,11 @@ const NotificationComponent: React.FunctionComponent<NotificationComponentAllPro
           {!!title && (
             <Text style={[s.title, titleStyle]} numberOfLines={maxTitleLines}>
               {title}
+            </Text>
+          )}
+          {!!subTitle && (
+            <Text style={[s.title, subTitleStyle]} numberOfLines={maxTitleLines}>
+              {subTitle}
             </Text>
           )}
           {!!description && (

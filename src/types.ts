@@ -77,6 +77,10 @@ export interface ShowNotificationParams<ComponentType extends ElementType = Elem
    * @default null */
   title?: string;
 
+  /** SubTitle of notification. __Passed to `Component`.__
+   * @default null */
+  subTitle?: string;
+
   /** Description of notification. __Passed to `Component`.__
    * @default null */
   description?: string;
@@ -116,6 +120,7 @@ export interface ShowNotificationParams<ComponentType extends ElementType = Elem
 
 export interface StateInterface {
   title?: string;
+  subTitle?: string;
   description?: string;
   swipeEnabled: boolean;
   Component: ElementType;

@@ -60,6 +60,10 @@ export interface AlertComponentProps {
    * @default null */
   titleStyle?: StyleProp<TextStyle>;
 
+  /** The style to use for rendering subTitle
+   * @default null */
+  subTitleStyle?: StyleProp<TextStyle>;
+
   /** The style to use for rendering description
    * @default null */
   descriptionStyle?: StyleProp<TextStyle>;
@@ -67,12 +71,15 @@ export interface AlertComponentProps {
 
 interface AlertComponentAllProps extends AlertComponentProps {
   title?: string;
+  subTitle?: string;
   description?: string;
 }
 
 const AlertComponent: React.FunctionComponent<AlertComponentAllProps> = ({
   title,
+  subTitle,
   titleStyle,
+  subTitleStyle,
   description,
   descriptionStyle,
   alertType = 'success',
@@ -90,6 +97,11 @@ const AlertComponent: React.FunctionComponent<AlertComponentAllProps> = ({
         {!!title && (
           <Text style={[s.title, textStyle, titleStyle]} numberOfLines={maxTitleLines}>
             {title}
+          </Text>
+        )}
+         {!!subTitle && (
+          <Text style={[s.title, textStyle, subTitleStyle]} numberOfLines={maxTitleLines}>
+            {subTitle}
           </Text>
         )}
         {!!description && (

@@ -146,6 +146,7 @@ export class NotifierRoot extends React.PureComponent<ShowNotificationParams, St
 
     const {
       title,
+      subTitle,
       description,
       swipeEnabled,
       Component,
@@ -159,6 +160,7 @@ export class NotifierRoot extends React.PureComponent<ShowNotificationParams, St
 
     this.setState({
       title,
+      subTitle,
       description,
       Component: Component ?? NotificationComponent,
       swipeEnabled: swipeEnabled ?? DEFAULT_SWIPE_ENABLED,
@@ -263,6 +265,7 @@ export class NotifierRoot extends React.PureComponent<ShowNotificationParams, St
   render() {
     const {
       title,
+      subTitle,
       description,
       swipeEnabled,
       Component,
@@ -300,7 +303,7 @@ export class NotifierRoot extends React.PureComponent<ShowNotificationParams, St
                   : undefined
               }
             >
-              <Component title={title} description={description} {...componentProps} />
+              <Component title={title} description={description} subTitle={subTitle} {...componentProps} />
             </View>
           </TouchableWithoutFeedback>
         </Animated.View>
