@@ -11,7 +11,7 @@ import {
   StyleProp,
   TouchableOpacity
 } from 'react-native';
-
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import SafeContainer from './SafeContainer';
 
 const s = StyleSheet.create({
@@ -49,6 +49,7 @@ const s = StyleSheet.create({
   title: {
     fontWeight: 'bold',
     fontSize: 15,
+    paddingTop: 8,
     lineHeight: 25,
     color: '#007BFF',
   },
@@ -83,6 +84,10 @@ export interface NotificationComponentProps {
   /** The style to use for rendering subTitle
     * @default null */
   subTitleStyle?: StyleProp<TextStyle>;
+
+  /** The style to use for rendering colorbgansware
+    * @default null */
+  colorBgAnsware?: string;
 
   /** The style to use for rendering Invite
     * @default null */
@@ -127,6 +132,7 @@ const NotificationComponent: React.FunctionComponent<NotificationComponentAllPro
   onPressInvite,
   onPressAnsware,
   subTitleStyle,
+  colorBgAnsware,
   inviteStyle,
   description,
   descriptionStyle,
@@ -149,13 +155,25 @@ const NotificationComponent: React.FunctionComponent<NotificationComponentAllPro
                   {title}
                 </Text>
               )}
-              <TouchableOpacity onPress={() => onPressInvite && onPressInvite()} style={{ paddingVertical: 16 }}>
+              <TouchableOpacity onPress={() => onPressInvite && onPressInvite()} style={{ paddingVertical: 8 }}>
                 <Text style={[s.title, inviteStyle]}>Invited to current call</Text>
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity onPress={() => onPressAnsware && onPressAnsware()} style={{ marginHorizontal: 8 }}>
-              <Text style={[s.title, inviteStyle]}>Icona</Text>
+            <TouchableOpacity onPress={() => onPressAnsware && onPressAnsware()}
+              style={{
+                marginHorizontal: 8
+              }}>
+              <View style={{
+                width: 48,
+                height: 48,
+                backgroundColor: colorBgAnsware,
+                borderRadius: 100,
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+                <MaterialIcons name="call" color="white" size={24} />
+              </View>
             </TouchableOpacity>
           </View>
         </Container>
