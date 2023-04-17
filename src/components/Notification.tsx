@@ -9,6 +9,7 @@ import {
   ImageStyle,
   ViewStyle,
   StyleProp,
+  TouchableOpacity
 } from 'react-native';
 
 import SafeContainer from './SafeContainer';
@@ -80,8 +81,20 @@ export interface NotificationComponentProps {
   titleStyle?: StyleProp<TextStyle>;
 
   /** The style to use for rendering subTitle
- * @default null */
+    * @default null */
   subTitleStyle?: StyleProp<TextStyle>;
+
+  /** The style to use for rendering Invite
+    * @default null */
+  inviteStyle?: StyleProp<TextStyle>;
+
+  /** On press to use for rendering Invite
+    * @default null */
+  onPressInvite?: Function;
+
+  /** On press to use for rendering Answare
+    * @default null */
+  onPressAnsware?: Function;
 
   /** The style to use for rendering description
    * @default null */
@@ -101,13 +114,20 @@ interface NotificationComponentAllProps extends NotificationComponentProps {
   title?: string;
   subTitle?: string;
   description?: string;
+  call?: boolean;
+  onPressInvite?: Function;
+  onPressAnsware?: Function;
 }
 
 const NotificationComponent: React.FunctionComponent<NotificationComponentAllProps> = ({
   title,
   subTitle,
+  call,
   titleStyle,
+  onPressInvite,
+  onPressAnsware,
   subTitleStyle,
+  inviteStyle,
   description,
   descriptionStyle,
   imageSource,
@@ -119,28 +139,51 @@ const NotificationComponent: React.FunctionComponent<NotificationComponentAllPro
 }) => {
   const Container = ContainerComponent ?? SafeContainer;
   return (
-    <Container>
-      <View style={[s.container, containerStyle]}>
-        {!!imageSource && <Image style={[s.image, imageStyle]} source={imageSource} />}
-        <View style={s.content}>
-          {!!title && (
-            <Text style={[s.title, titleStyle]} numberOfLines={maxTitleLines}>
-              {title}
-            </Text>
-          )}
-          {!!subTitle && (
-            <Text style={[s.title, subTitleStyle]} numberOfLines={maxTitleLines}>
-              {subTitle}
-            </Text>
-          )}
-          {!!description && (
-            <Text style={[s.description, descriptionStyle]} numberOfLines={maxDescriptionLines}>
-              {description}
-            </Text>
-          )}
-        </View>
-      </View>
-    </Container>
+    <>
+      {call ? (
+        <Container>
+          <View style={[s.container, containerStyle]}>
+            <View style={s.content}>
+              {!!title && (
+                <Text style={[s.title, titleStyle]} numberOfLines={maxTitleLines}>
+                  {title}
+                </Text>
+              )}
+              <TouchableOpacity onPress={() => onPressInvite && onPressInvite()} style={{ paddingVertical: 16 }}>
+                <Text style={[s.title, inviteStyle]}>Invited to current call</Text>
+              </TouchableOpacity>
+            </View>
+
+            <TouchableOpacity onPress={() => onPressAnsware && onPressAnsware()} style={{ marginHorizontal: 8 }}>
+              <Text style={[s.title, inviteStyle]}>Icona</Text>
+            </TouchableOpacity>
+          </View>
+        </Container>
+      ) : (
+        <Container>
+          <View style={[s.container, containerStyle]}>
+            {!!imageSource && <Image style={[s.image, imageStyle]} source={imageSource} />}
+            <View style={s.content}>
+              {!!title && (
+                <Text style={[s.title, titleStyle]} numberOfLines={maxTitleLines}>
+                  {title}
+                </Text>
+              )}
+              {!!subTitle && (
+                <Text style={[s.title, subTitleStyle]} numberOfLines={maxTitleLines}>
+                  {subTitle}
+                </Text>
+              )}
+              {!!description && (
+                <Text style={[s.description, descriptionStyle]} numberOfLines={maxDescriptionLines}>
+                  {description}
+                </Text>
+              )}
+            </View>
+          </View>
+        </Container>
+      )}
+    </>
   );
 };
 

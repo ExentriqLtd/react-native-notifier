@@ -81,6 +81,18 @@ export interface ShowNotificationParams<ComponentType extends ElementType = Elem
    * @default null */
   subTitle?: string;
 
+  /** Call of notification. __Passed to `Component`.__
+   * @default null */
+  call?: boolean;
+
+  /** Invite of notification. __Passed to `Component`.__
+   * @default null */
+  onPressInvite?: Function;
+
+  /** Answare of notification. __Passed to `Component`.__
+  * @default null */
+  onPressAnsware?: Function;
+
   /** Description of notification. __Passed to `Component`.__
    * @default null */
   description?: string;
@@ -121,6 +133,9 @@ export interface ShowNotificationParams<ComponentType extends ElementType = Elem
 export interface StateInterface {
   title?: string;
   subTitle?: string;
+  call?: boolean;
+  onPressInvite?: Function;
+  onPressAnsware?: Function;
   description?: string;
   swipeEnabled: boolean;
   Component: ElementType;
