@@ -11,7 +11,6 @@ import {
   StyleProp,
   TouchableOpacity
 } from 'react-native';
-import MaterialIcons from '../../../react-native-vector-icons/MaterialIcons';
 import SafeContainer from './SafeContainer';
 
 const s = StyleSheet.create({
@@ -172,7 +171,7 @@ const NotificationComponent: React.FunctionComponent<NotificationComponentAllPro
                 justifyContent: 'center',
                 alignItems: 'center'
               }}>
-                <MaterialIcons name="call" color="white" size={24} />
+                <Image source={require('./phone-call.png')} style={{ width: 24, height: 24 }} />
               </View>
             </TouchableOpacity>
           </View>
