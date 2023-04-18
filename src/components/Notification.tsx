@@ -11,7 +11,7 @@ import {
   StyleProp,
   TouchableOpacity
 } from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcons from '../../../react-native-vector-icons/MaterialIcons';
 import SafeContainer from './SafeContainer';
 
 const s = StyleSheet.create({
