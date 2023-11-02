@@ -155,7 +155,7 @@ const NotificationComponent: React.FunctionComponent<NotificationComponentAllPro
                 </Text>
               )}
               <TouchableOpacity onPress={() => onPressInvite && onPressInvite()} style={{ paddingVertical: 8 }}>
-                <Text style={[s.title, inviteStyle]}>Invited to current call</Text>
+                <Text style={[s.title, inviteStyle]}>Invite to current call</Text>
               </TouchableOpacity>
             </View>
 
